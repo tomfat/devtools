@@ -1,0 +1,3 @@
+#Copy this file as 'param'
+#Set the HOME dir to your develop root
+export DEV_HOME='/Users/your_dev_dir/'
