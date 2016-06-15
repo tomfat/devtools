@@ -1,1 +1,0 @@
-redis-cli -h HOST_NAME -a ACCOUNT:PASSWORD
