@@ -1,0 +1,14 @@
+{
+    "name": "devtools",
+    "version": "0.1.0",
+    "description": "A collection of command and scripts to ease your dev work",
+
+    "repository":{
+        "type": "git",
+        "url": "https://github.com/tomfat/devtools.git"
+    },
+    
+    "bin": {
+        "egit": "./gitenhance/egit"
+    }
+}
