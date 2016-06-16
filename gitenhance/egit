@@ -2,17 +2,39 @@
 
 root_dir=`pwd`
 
+git status >> /dev/null 2>&1
+in_git_repo=$?
+if [ $in_git_repo == 0 ]
+then
+    echo "Inside git repo"
+    while [ ! -d .git ]
+    do
+        root_dir=`dirname $root_dir`
+        echo "Search for root dir of git repo: $root_dir"
+        cd $root_dir
+    done
+    root_dir=`dirname $root_dir`
+    echo "Enter root dir: $root_dir"  
+    cd $root_dir
+fi
+
+
 sub_dirs=`ls -F $root_dir | grep /`
 
 for sub_dir in $sub_dirs
 do
-    echo "=========$sub_dir========="
-    cd $root_dir/$sub_dir
-    if [ -d .git ] 
+    if [ -d $root_dir/$sub_dir ]
     then
-        echo "git ${@:1}"
-        git ${@:1}
+        echo "=========$sub_dir========="
+        cd $root_dir/$sub_dir
+        if [ -d .git ] 
+        then
+            echo "git ${@:1}"
+            git ${@:1}
+        else
+            echo "Not a git repo: $sub_dir"
+        fi
     else
-        echo "Not a git repo"
+        echo "Not a dir: $sub_dir"
     fi
 done
